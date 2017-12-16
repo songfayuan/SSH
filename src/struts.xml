@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC 
+ 
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN" 
+ 
+    "http://struts.apache.org/dtds/struts-2.1.7.dtd"> 
+
+<struts>   
+ 
+	 <package name="sh1" extends="struts-default" namespace="/user">
+	 	<!-- name="register"中的register为将来的请求路径, class="userAction"为引用对象名 -->
+	 	<action name="register" class="userAction" method="add">
+			<result name="succ">/page/login.jsp</result>			
+		</action>		
+		<action name="login" class="userAction" method="login">
+			<result name="succ">/page/main.jsp</result>
+			<result name="fail">/page/login.jsp</result>
+		</action>
+			<action name="logout" class="userAction" method="logout">
+			<result name="succ">/page/Student/login.jsp</result>
+		</action>
+	 </package>
+	 
+	 <package name="sh2" extends="struts-default" namespace="/term">	 	
+		<action name="add" class="termAction" method="add">
+			<result name="succ" type="redirectAction">/selectTerm.do</result>
+		</action>	
+		<action name="selectTerm" class="termAction" method="selectTerm">
+			<result name="succ">/page/showTerm.jsp</result>
+		</action>	
+	 </package>
+	 
+	 <package name="sh3" extends="struts-default" namespace="/department">	 	
+		<action name="getTerm" class="departmentAction" method="getTerm">		
+		</action>
+		<action name="getDepartmentB" class="departmentAction" method="getDepartmentB">		
+		</action>
+		<action name="add" class="departmentAction" method="add">
+			<result name="succ"  type="redirectAction">../term/selectTerm.do</result>
+		</action>	
+		<action name="select" class="departmentAction" method="select">
+			<result name="succ">/page/Department/list.jsp</result>
+		</action>	
+	 </package>
+	 
+	 <package name="sh4" extends="struts-default" namespace="/student">	 				
+		<action name="getBm" class="studentAction" method="getBm">
+		</action>
+		<action name="add" class="studentAction" method="add">
+			<result name="succ">/page/Student/add.jsp</result>
+		</action>
+		<action name="login" class="studentAction" method="login">
+			<result name="succ">/page/main.jsp</result>
+			<result name="fail">/page/Student/login.jsp</result>
+		</action>	
+		<action name="getStus" class="studentAction" method="getStus">
+			<result name="succ">/page/Student/list.jsp</result>
+		</action>	
+		<action name="logout" class="studentAction" method="logout">
+			<result name="succ">/page/Student/login.jsp</result>
+		</action>
+		<action name="getAllStus" class="studentAction" method="getAllStus">
+			<result name="succ">/page/showInfo.jsp</result>
+		</action>
+	 </package>
+	 
+    <!-- 请求参数的编码方式--> 
+    <constant name="struts.i18n.encoding" value="UTF-8"/> 
+    <!-- 指定被struts2处理的请求后缀类型。多个用逗号隔开--> 
+    <constant name="struts.action.extension" value="action,do,htm"/> 
+    <!-- 当struts.xml改动后，是否重新加载。默认值为false(生产环境下使用),开发阶段最好打开  --> 
+    <constant name="struts.configuration.xml.reload" value="true"/> 
+    <!-- 是否使用struts的开发模式。开发模式会有更多的调试信息。默认值为false(生产环境下使用),开发阶段最好打开  --> 
+    <constant name="struts.devMode" value="false"/>   
+    <!-- 设置浏览器是否缓存静态内容。默认值为true(生产环境下使用),开发阶段最好关闭  --> 
+    <constant name="struts.serve.static.browserCache" value="false" /> 
+    <!-- 指定由spring负责action对象的创建    --> 
+    <constant name="struts.objectFactory" value="spring" /> 
+    <!-- 是否开启动态方法调用--> 
+    <constant name="struts.enable.DynamicMethodInvocation" value="false"/>  
+    
+</struts> 
+
